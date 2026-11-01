@@ -1,7 +1,7 @@
 ---
 name: meeting-auto-join
 description: 用户转发腾讯会议邀请、只给了会议号、或要求"帮我入会/打开那个会"并希望自动闭麦关摄像头时使用。通过 Win32 截图/点击/键盘脚本操作腾讯会议客户端：置前 → 进入会议(点待开始会议行，或输入会议号) → 核对会议设置(取消勾选入会开摄像头/开麦克风) → 选电脑音频 → 校验已闭麦且摄像头关闭。同义说法：直接进会、加入会议、打开会议、入会并静音、腾讯会议自动入会、自动进会议室、自动闭麦关摄像头、会议定时入会。
-description_en: Join a Tencent Meeting (WeMeet) invitation on the desktop client and leave microphone muted and camera off, driven by window screenshots, clicks and hotkeys. Keywords: tencent meeting auto join, wemeet automation, auto mute microphone, turn off camera, scheduled meeting join.
+description_en: Join a Tencent Meeting (WeMeet) invitation on the desktop client and leave microphone muted and camera off, driven by window screenshots, clicks and hotkeys. Keywords — tencent meeting auto join, wemeet automation, auto mute microphone, turn off camera, scheduled meeting join.
 license: MIT
 version: 1.0.2
 agent_created: true
