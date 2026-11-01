@@ -1,4 +1,4 @@
-"""维护脚本：把公共脚本从「微信发消息」同步到「预约自动入会」。
+"""维护脚本：把公共脚本从 wechat-send 同步到 meeting-auto-join。
 
 两个 skill 目录是自包含的（可单独拷走），代价是公共脚本各存一份。
 改了公共文件后跑一次这个脚本，避免两边不一致：
@@ -17,8 +17,8 @@ COMMON = [
 ]
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "skills" / "微信发消息" / "scripts"
-DST = ROOT / "skills" / "预约自动入会" / "scripts"
+SRC = ROOT / "skills" / "wechat-send" / "scripts"
+DST = ROOT / "skills" / "meeting-auto-join" / "scripts"
 
 
 def main():

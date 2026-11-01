@@ -1,5 +1,5 @@
 ---
-name: 微信发消息
+name: wechat-send
 description: 用户在桌面微信里给某个群或个人发一条消息、不想自己动手点的时候使用。通过 Win32 截图/点击/剪贴板脚本操作微信客户端：恢复窗口 → 窗口截图量坐标 → 搜索会话 → 核对标题(群名带人数) → 输入内容(中文走剪贴板) → 点「发送」→ 截图确认气泡。同义说法：给群里发个消息、在XX群发一下、微信回他一句、发微信消息。
 description_en: Send a WeChat message to a specific group or contact by driving the desktop client with window screenshots, CV template matching, clipboard paste and clicks. Use when the user asks to send a WeChat message without clicking themselves.
 license: MIT
@@ -7,9 +7,9 @@ version: 1.0.0
 agent_created: true
 ---
 
-# 微信发消息
+# 微信发消息（`wechat-send`）
 
-完整规范见 [`./微信发消息.md`](./微信发消息.md)。脚本在 `scripts/`，所有命令都在该目录下执行。
+完整规范见 [`GUIDE.md`](./GUIDE.md)。脚本在 `scripts/`，所有命令都在该目录下执行。
 
 ## 环境
 
