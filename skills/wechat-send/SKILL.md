@@ -3,7 +3,7 @@ name: wechat-send
 description: 用户在桌面微信里给某个群或个人发一条消息、不想自己动手点的时候使用。通过 Win32 截图/点击/剪贴板脚本操作微信客户端：恢复窗口 → 窗口截图量坐标 → 搜索会话 → 核对标题(群名带人数) → 输入内容(中文走剪贴板) → 点「发送」→ 截图确认气泡。同义说法：给群里发个消息、在XX群发一下、微信回他一句、发微信消息。
 description_en: Send a WeChat message to a specific group or contact by driving the desktop client with window screenshots, CV template matching, clipboard paste and clicks. Use when the user asks to send a WeChat message without clicking themselves.
 license: MIT
-version: 1.0.0
+version: 1.0.1
 agent_created: true
 ---
 
@@ -35,10 +35,14 @@ py key.py ctrl f                        # 3. Ctrl+F 聚焦搜索框（或点搜�
 py paste.py "群名关键词" --title 微信     #    中文走粘贴；纯数字可用 type.py
 py grab.py 微信 shot.png                #    截图确认下拉分组与目标行
 py click.py <x> <y> --title 微信         #    点名字文字，别点头像
+#    若 abort 提示 "window under point is 'Weixin'"：搜索下拉是独立窗口，标题叫 Weixin
+#    → 这一步去掉 --title 裸点，并先截图确认下拉浮在微信主窗口之上
 
 py click.py <输入框x> <输入框y> --title 微信
 py paste.py "要发的内容" --replace --title 微信
 py click.py <发送x> <发送y> --title 微信   # 4. 点「发送」，不要按 Enter
+#    点了没反应（气泡没出现、输入框没清空、按钮仍是绿的）→ 先确认框里有字，
+#    再点输入框聚焦 + py key.py enter 兜底；别连点三次按钮
 py grab.py 微信 after.png               # 5. 校验气泡 / 输入框 / 按钮
 ```
 
@@ -59,13 +63,15 @@ py grab.py 微信 after.png               # 5. 校验气泡 / 输入框 / 按钮
 | `diff.py a.png b.png` | 像素差，判断点击是否生效 |
 | `cvfind.py --shot 微信 tpl/x.png` | 可选：模板匹配精确定位（需 opencv）|
 
-## 最容易踩的五个坑
+## 最容易踩的几个坑
 
 1. 窗口藏在托盘时 `IsWindowVisible=0`，但 `win.py 微信` 仍能找到——不用先判断可见性。
 2. 点「进入微信」后界面消失 1~3 秒是隐藏创建，不是失败，等 2 秒再来。
 3. 搜索框输入后框里看不到字是正常的，看下拉有没有出现「群聊/聊天记录」分组。
 4. 「发送」灰着 = 输入框是空的，粘贴没生效，重点输入框再粘，别连点。
 5. 换机器 / 换分辨率 / 换 DPI / 换主题 → 所有坐标和模板都要重测。
+6. 搜索下拉是独立窗口（命中测试读到标题 `Weixin`），带 `--title 微信` 会被安全闸拦下；点结果行时去掉 `--title`。
+7. 点「发送」无效时先别怀疑坐标：确认输入框有字，聚焦输入框后 `key.py enter` 通常一次就成。`cvfind.py` 找不到按钮 ≠ 按钮不存在，模板会随主题/缩放失效，看截图目测更快。
 
 ## 安全
 
