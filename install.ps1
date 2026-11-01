@@ -1,11 +1,16 @@
-# 把 skills\* 安装到本机 Agent 的技能目录。
+# Install both skills into an Agent skills directory.
 #
-# 用法：
+# Usage:
 #   powershell -ExecutionPolicy Bypass -File install.ps1
 #   powershell -ExecutionPolicy Bypass -File install.ps1 -Dest "$env:USERPROFILE\.claude\skills"
 #
-# 默认目标：%USERPROFILE%\.workbuddy\skills
-# 已存在的同名技能会先备份成 <名字>.bak-<时间戳>，不会直接覆盖。
+# Default target: %USERPROFILE%\.workbuddy\skills
+# An existing skill with the same name is renamed to <name>.bak-<timestamp> first,
+# so nothing is silently overwritten.
+#
+# This file is intentionally ASCII-only: Windows PowerShell 5.1 reads .ps1 files
+# using the system ANSI codepage, so non-ASCII text would show up garbled unless
+# the file carries a UTF-8 BOM.
 
 param(
     [string]$Dest = "$env:USERPROFILE\.workbuddy\skills"
@@ -16,14 +21,16 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $src = Join-Path $root "skills"
 
 if (-not (Test-Path $src)) {
-    Write-Error "找不到 skills 目录：$src"
+    throw "skills directory not found: $src"
 }
 if (-not (Test-Path $Dest)) {
     New-Item -ItemType Directory -Path $Dest -Force | Out-Null
-    Write-Host "已创建目标目录：$Dest"
+    Write-Host "created target directory: $Dest"
 }
 
 $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$installed = 0
+
 Get-ChildItem -Path $src -Directory | ForEach-Object {
     $name = $_.Name
     $target = Join-Path $Dest $name
@@ -31,14 +38,16 @@ Get-ChildItem -Path $src -Directory | ForEach-Object {
     if (Test-Path $target) {
         $backup = "$target.bak-$stamp"
         Move-Item -Path $target -Destination $backup
-        Write-Host "已备份旧版本 -> $backup"
+        Write-Host "backed up previous version -> $backup"
     }
 
     Copy-Item -Path $_.FullName -Destination $target -Recurse
-    $files = (Get-ChildItem -Path $target -Recurse -File).Count
-    Write-Host ("已安装 {0} -> {1}（{2} 个文件）" -f $name, $target, $files)
+    $count = (Get-ChildItem -Path $target -Recurse -File).Count
+    Write-Host "installed $name -> $target ($count files)"
+    $installed++
 }
 
 Write-Host ""
-Write-Host "完成。重启 Agent 客户端后，说一句「在某个微信群发条消息」即可触发。" -ForegroundColor Green
-Write-Host "提示：脚本只依赖 Python 标准库；模板匹配（cvfind.py）额外需要 opencv-python-headless numpy。"
+Write-Host "done: $installed skill(s) installed." -ForegroundColor Green
+Write-Host "Restart your Agent client, then ask it to send a WeChat message or join a meeting."
+Write-Host "Note: scripts only need the Python standard library; cvfind.py additionally needs opencv-python-headless + numpy."
