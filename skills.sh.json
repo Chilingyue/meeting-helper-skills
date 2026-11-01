@@ -3,8 +3,8 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "桌面自动化",
-      "description": "Screenshot-and-click automation for Windows desktop clients.",
+      "title": "桌面自动化 · 微信发消息 / 腾讯会议自动入会",
+      "description": "Screenshot-and-click automation for Windows desktop clients. WeChat auto send message, Tencent Meeting (WeMeet) auto join with mic muted and camera off. 微信自动发消息、微信群发、腾讯会议自动入会、自动静音关摄像头。",
       "skills": ["wechat-send", "meeting-auto-join"]
     }
   ]

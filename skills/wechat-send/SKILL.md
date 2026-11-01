@@ -1,9 +1,9 @@
 ---
 name: wechat-send
-description: 用户在桌面微信里给某个群或个人发一条消息、不想自己动手点的时候使用。通过 Win32 截图/点击/剪贴板脚本操作微信客户端：恢复窗口 → 窗口截图量坐标 → 搜索会话 → 核对标题(群名带人数) → 输入内容(中文走剪贴板) → 点「发送」→ 截图确认气泡。同义说法：给群里发个消息、在XX群发一下、微信回他一句、发微信消息。
-description_en: Send a WeChat message to a specific group or contact by driving the desktop client with window screenshots, CV template matching, clipboard paste and clicks. Use when the user asks to send a WeChat message without clicking themselves.
+description: 用户在桌面微信里给某个群或个人发一条消息、不想自己动手点的时候使用。通过 Win32 截图/点击/剪贴板脚本操作微信客户端：恢复窗口 → 窗口截图量坐标 → 搜索会话 → 核对标题(群名带人数) → 输入内容(中文走剪贴板) → 点「发送」→ 截图确认气泡。同义说法：给群里发个消息、在XX群发一下、微信回他一句、发微信消息、微信自动发消息、桌面微信自动化、Windows 微信自动化、微信群发消息、微信定时发送。
+description_en: Send a WeChat message to a specific group or contact by driving the desktop client with window screenshots, CV template matching, clipboard paste and clicks. Use when the user asks to send a WeChat message without clicking themselves. Keywords: wechat desktop automation, wechat send message, windows wechat bot, wechat auto sender, scheduled wechat message.
 license: MIT
-version: 1.0.1
+version: 1.0.2
 agent_created: true
 ---
 
