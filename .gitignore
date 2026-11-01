@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.png
+!skills/*/scripts/tpl/*.png
+*.bmp
+*.log
+.grab_tmp.png
+.grab_tmp.*
+shot*.png
+*.bak-*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
