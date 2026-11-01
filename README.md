@@ -1,5 +1,7 @@
 # meeting-helper-skills
 
+[![skills.sh](https://skills.sh/b/Chilingyue/meeting-helper-skills)](https://skills.sh/Chilingyue/meeting-helper-skills)
+
 两个 Windows 桌面 Agent Skill：**在微信里给指定群或个人发消息**、**自动进腾讯会议并闭麦关摄像头**。
 
 靠截屏 + 点击 + 键盘操作真实客户端窗口，不需要官方 API、不需要申请权限、不需要 pip install。适用于任何支持 `SKILL.md` 的 Agent（Claude Code / Codex / Cursor / WorkBuddy …）。

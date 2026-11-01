@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "桌面自动化",
+      "description": "Screenshot-and-click automation for Windows desktop clients.",
+      "skills": ["wechat-send", "meeting-auto-join"]
+    }
+  ]
+}
